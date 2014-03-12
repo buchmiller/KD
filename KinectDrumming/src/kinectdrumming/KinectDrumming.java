@@ -33,6 +33,7 @@ public class KinectDrumming extends PApplet
    @Override
    public void setup()
    {
+      frameRate(30);
       img = loadImage("what.jpg");
       System.out.println("displayWidth: " + displayWidth);
       System.out.println("displayHeight: " + displayHeight);
@@ -47,12 +48,12 @@ public class KinectDrumming extends PApplet
 //      frame.setResizable(false);
 
       context = new SimpleOpenNI(this);
-      if (context.isInit() == false)
-      {
-         println("Can't init SimpleOpenNI, maybe the camera is not connected!");
-         exit();
-         return;
-      }
+//      if (context.isInit() == false)
+//      {
+//         println("Can't init SimpleOpenNI, maybe the camera is not connected!");
+//         exit();
+//         return;
+//      }
 
       context.enableDepth(); // enable depthMap generation
 
@@ -112,8 +113,13 @@ public class KinectDrumming extends PApplet
       // draw depthImageMap
       //image(context.depthImage(),0,0);
 //      image(context.userImage(), 0, 0);
-      image(context.depthImage(), 0, 0, scaledWidth, scaledHeight);
+//      image(context.depthImage(), 0, 0, scaledWidth, scaledHeight);
       //image(img, 200, 200);
+
+      //Use this code block for testing with mouse cursor
+      calcCollisions(mouseX, mouseY);
+      drawHand(mouseX, mouseY);
+      determineLibrary();
 
       if (handPositions.size() > 0)
       {
