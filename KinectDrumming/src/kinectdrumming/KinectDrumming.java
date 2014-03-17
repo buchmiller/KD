@@ -76,14 +76,17 @@ public class KinectDrumming extends PApplet
 //      SoundLibrary.switchLibrary(SoundLibrary.Name.SYNTH);
 
       SoundRegion region;
-      region = new SoundRegion(this, scale, 0, 60, 120, 100, SoundLibrary.getSoundPath(0));
+      region = new SoundRegion(this, scale, 0, 50, 100, 100, SoundLibrary.getSoundPath(0));
       region.setLooping(SoundLibrary.isLooping(0));
       regions.add(region);
-      region = new SoundRegion(this, scale, 0, 165, 120, 100, SoundLibrary.getSoundPath(1));
+      region = new SoundRegion(this, scale, 0, 152, 100, 100, SoundLibrary.getSoundPath(1));
       region.setLooping(SoundLibrary.isLooping(1));
       regions.add(region);
-      region = new SoundRegion(this, scale, 0, 270, 120, 100, SoundLibrary.getSoundPath(2));
+      region = new SoundRegion(this, scale, 0, 254, 100, 100, SoundLibrary.getSoundPath(2));
       region.setLooping(SoundLibrary.isLooping(2));
+      regions.add(region);
+      region = new SoundRegion(this, scale, 0, 356, 100, 100, SoundLibrary.getSoundPath(3));
+      region.setLooping(SoundLibrary.isLooping(3));
       regions.add(region);
 
       regions.add(new RecordRegion(this, scale, 190, 0, 80, 60));
@@ -93,14 +96,17 @@ public class KinectDrumming extends PApplet
       switchRegion = new SwitchRegion(this, scale, 360, 0, 80, 60, "");
       regions.add(switchRegion);
 
-      region = new SoundRegion(this, scale, imageWidth - 120, 60, 120, 100, SoundLibrary.getSoundPath(3));
-      region.setLooping(SoundLibrary.isLooping(3));
-      regions.add(region);
-      region = new SoundRegion(this, scale, imageWidth - 120, 165, 120, 100, SoundLibrary.getSoundPath(4));
+      region = new SoundRegion(this, scale, imageWidth - 100, 50, 100, 100, SoundLibrary.getSoundPath(4));
       region.setLooping(SoundLibrary.isLooping(4));
       regions.add(region);
-      region = new SoundRegion(this, scale, imageWidth - 120, 270, 120, 100, SoundLibrary.getSoundPath(5));
+      region = new SoundRegion(this, scale, imageWidth - 100, 152, 100, 100, SoundLibrary.getSoundPath(5));
       region.setLooping(SoundLibrary.isLooping(5));
+      regions.add(region);
+      region = new SoundRegion(this, scale, imageWidth - 100, 254, 100, 100, SoundLibrary.getSoundPath(6));
+      region.setLooping(SoundLibrary.isLooping(6));
+      regions.add(region);
+      region = new SoundRegion(this, scale, imageWidth - 100, 356, 100, 100, SoundLibrary.getSoundPath(7));
+      region.setLooping(SoundLibrary.isLooping(7));
       regions.add(region);
    }
 
