@@ -10,6 +10,11 @@ public class SoundLibrary
    {
       MARIO, SYNTH, BIT8
    }
+
+   public static enum LoopMode
+   {
+      NONE, ACTIVE, TOGGLE
+   }
    private static Name activeLibrary = Name.MARIO;
    private static final Map<Name, String[]> files;
 
@@ -31,7 +36,7 @@ public class SoundLibrary
       });
       tempMap.put(Name.SYNTH, new String[]
       {
-         "00000100",
+         "00000T00",
          "sounds/beat.wav",
          "sounds/blip.wav",
          "sounds/blip1.wav",
@@ -85,8 +90,22 @@ public class SoundLibrary
    }
 
    //TODO add getPicturePath?
-   public static boolean isLooping(int fileNum)
+   public static LoopMode getLoopMode(int fileNum)
    {
-      return files.get(activeLibrary)[0].charAt(fileNum) == '1';
+      LoopMode mode = LoopMode.NONE;
+      switch (files.get(activeLibrary)[0].charAt(fileNum))
+      {
+         case '0':
+            mode = LoopMode.NONE;
+            break;
+         case '1':
+            mode = LoopMode.ACTIVE;
+            break;
+         case 'T':
+            mode = LoopMode.TOGGLE;
+            break;
+      }
+
+      return mode;
    }
 }

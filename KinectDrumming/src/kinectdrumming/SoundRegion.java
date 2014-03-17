@@ -3,6 +3,8 @@ package kinectdrumming;
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import static kinectdrumming.Region.parent;
+import kinectdrumming.SoundLibrary.LoopMode;
 import processing.core.PApplet;
 
 public class SoundRegion extends Region
@@ -10,6 +12,8 @@ public class SoundRegion extends Region
    private Clip clip;
    private boolean isPlaying = false;
    private boolean loop = false;
+   private LoopMode loopMode = LoopMode.NONE;
+   private boolean hasEnteredRegion = false;
    //label or picture
 
    public SoundRegion(PApplet parent, float scale, int x, int y, int width, int height, String soundPath)
@@ -37,15 +41,21 @@ public class SoundRegion extends Region
       this(parent, scale, x, y, width, height, "");
    }
 
-   public void setLooping(boolean shouldLoop)
+   public void setLoopMode(LoopMode loopMode)
    {
-      //stop a clip from looping when turning loop off
-      if (clip != null && loop && !shouldLoop)
+      if (loopMode == LoopMode.NONE)
       {
-         clip.stop();
+         if (clip != null && loop)
+         {
+            clip.stop();
+         }
+         this.loop = false;
       }
-
-      this.loop = shouldLoop;
+      else
+      {
+         this.loop = true;
+      }
+      this.loopMode = loopMode;
    }
 
    @Override
@@ -56,21 +66,34 @@ public class SoundRegion extends Region
       if (isColliding)
       {
          parent.fill(0, 255, 255, 140);
-         if (!isPlaying && file != null)
+         if (!hasEnteredRegion && file != null)
          {
             try
             {
-               isPlaying = true;
-               clip = AudioSystem.getClip();
-               clip.open(AudioSystem.getAudioInputStream(file));
-               if (loop)
+               hasEnteredRegion = true;
+               if (loopMode != LoopMode.TOGGLE || !isPlaying)
                {
-                  clip.loop(Clip.LOOP_CONTINUOUSLY);
+                  isPlaying = true;
+                  clip = AudioSystem.getClip();
+                  clip.open(AudioSystem.getAudioInputStream(file));
+                  if (loop)
+                  {
+                     clip.loop(Clip.LOOP_CONTINUOUSLY);
+                  }
+                  else
+                  {
+                     clip.start();
+                  }
                }
-               else
+               else if (loopMode == LoopMode.TOGGLE)
                {
-                  clip.start();
+                  isPlaying = false;
+                  if (loop && clip != null)
+                  {
+                     clip.stop();
+                  }
                }
+
             }
             catch (Exception e)
             {
@@ -80,8 +103,8 @@ public class SoundRegion extends Region
       else
       {
          parent.fill(0, 0, 255, 140);
-         isPlaying = false;
-         if (loop && clip != null)
+         hasEnteredRegion = false;
+         if (loop && clip != null && loopMode == LoopMode.ACTIVE)
          {
             clip.stop();
          }

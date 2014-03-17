@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import kinectdrumming.SoundLibrary.LoopMode;
 import processing.core.*;
 import static processing.core.PApplet.concat;
 import static processing.core.PApplet.println;
@@ -77,36 +78,36 @@ public class KinectDrumming extends PApplet
 
       SoundRegion region;
       region = new SoundRegion(this, scale, 0, 50, 100, 100, SoundLibrary.getSoundPath(0));
-      region.setLooping(SoundLibrary.isLooping(0));
+      region.setLoopMode(SoundLibrary.getLoopMode(0));
       regions.add(region);
       region = new SoundRegion(this, scale, 0, 152, 100, 100, SoundLibrary.getSoundPath(1));
-      region.setLooping(SoundLibrary.isLooping(1));
+      region.setLoopMode(SoundLibrary.getLoopMode(1));
       regions.add(region);
       region = new SoundRegion(this, scale, 0, 254, 100, 100, SoundLibrary.getSoundPath(2));
-      region.setLooping(SoundLibrary.isLooping(2));
+      region.setLoopMode(SoundLibrary.getLoopMode(2));
       regions.add(region);
       region = new SoundRegion(this, scale, 0, 356, 100, 100, SoundLibrary.getSoundPath(3));
-      region.setLooping(SoundLibrary.isLooping(3));
+      region.setLoopMode(SoundLibrary.getLoopMode(3));
       regions.add(region);
 
       regions.add(new RecordRegion(this, scale, 190, 0, 80, 60));
       region = new PlayRegion(this, scale, 275, 0, 80, 60);
-      region.setLooping(true);
+      region.setLoopMode(LoopMode.TOGGLE);
       regions.add(region);
       switchRegion = new SwitchRegion(this, scale, 360, 0, 80, 60, "");
       regions.add(switchRegion);
 
       region = new SoundRegion(this, scale, imageWidth - 100, 50, 100, 100, SoundLibrary.getSoundPath(4));
-      region.setLooping(SoundLibrary.isLooping(4));
+      region.setLoopMode(SoundLibrary.getLoopMode(4));
       regions.add(region);
       region = new SoundRegion(this, scale, imageWidth - 100, 152, 100, 100, SoundLibrary.getSoundPath(5));
-      region.setLooping(SoundLibrary.isLooping(5));
+      region.setLoopMode(SoundLibrary.getLoopMode(5));
       regions.add(region);
       region = new SoundRegion(this, scale, imageWidth - 100, 254, 100, 100, SoundLibrary.getSoundPath(6));
-      region.setLooping(SoundLibrary.isLooping(6));
+      region.setLoopMode(SoundLibrary.getLoopMode(6));
       regions.add(region);
       region = new SoundRegion(this, scale, imageWidth - 100, 356, 100, 100, SoundLibrary.getSoundPath(7));
-      region.setLooping(SoundLibrary.isLooping(7));
+      region.setLoopMode(SoundLibrary.getLoopMode(7));
       regions.add(region);
    }
 
@@ -165,7 +166,7 @@ public class KinectDrumming extends PApplet
             {
                SoundRegion sr = (SoundRegion) r;
                sr.setPath(SoundLibrary.getSoundPath(i));
-               sr.setLooping(SoundLibrary.isLooping(i));
+               sr.setLoopMode(SoundLibrary.getLoopMode(i));
                //sr.setPicture(SoundLibrary.getPicture(i));
                i++;
             }
