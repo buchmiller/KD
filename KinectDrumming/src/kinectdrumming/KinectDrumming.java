@@ -92,7 +92,7 @@ public class KinectDrumming extends PApplet
 
       regions.add(new RecordRegion(this, scale, 190, 0, 80, 60));
       region = new PlayRegion(this, scale, 275, 0, 80, 60);
-      region.setLoopMode(LoopMode.TOGGLE);
+      region.setLoopMode(LoopMode.ACTIVE);
       regions.add(region);
       switchRegion = new SwitchRegion(this, scale, 360, 0, 80, 60, "");
       regions.add(switchRegion);

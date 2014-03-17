@@ -10,8 +10,7 @@ import processing.core.PApplet;
 public class SoundRegion extends Region
 {
    private Clip clip;
-   private boolean isPlaying = false;
-   private boolean loop = false;
+   private boolean isPlayingLoop = false;
    private LoopMode loopMode = LoopMode.NONE;
    private boolean hasEnteredRegion = false;
    //label or picture
@@ -43,19 +42,44 @@ public class SoundRegion extends Region
 
    public void setLoopMode(LoopMode loopMode)
    {
-      if (loopMode == LoopMode.NONE)
-      {
-         if (clip != null && loop)
-         {
-            clip.stop();
-         }
-         this.loop = false;
-      }
-      else
-      {
-         this.loop = true;
-      }
       this.loopMode = loopMode;
+      if (loopMode == LoopMode.NONE) //stop any playing loops
+      {
+         isPlayingLoop = false;
+         stopPlaying();
+      }
+   }
+
+   private void startPlaying(boolean shouldLoop)
+   {
+      if (file != null)
+      {
+         try
+         {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(file));
+            if (shouldLoop)
+            {
+               isPlayingLoop = true;
+               clip.loop(Clip.LOOP_CONTINUOUSLY);
+            }
+            else
+            {
+               clip.start();
+            }
+         }
+         catch (Exception e)
+         {
+         }
+      }
+   }
+
+   private void stopPlaying()
+   {
+      if (clip != null)
+      {
+         clip.stop();
+      }
    }
 
    @Override
@@ -63,51 +87,72 @@ public class SoundRegion extends Region
    {
       parent.stroke(0, 0, 0, 0); //no border
 
-      if (isColliding)
+      switch (loopMode)
       {
-         parent.fill(0, 255, 255, 140);
-         if (!hasEnteredRegion && file != null)
-         {
-            try
+         case NONE:
+            if (isColliding)
             {
-               hasEnteredRegion = true;
-               if (loopMode != LoopMode.TOGGLE || !isPlaying)
+               parent.fill(0, 255, 255, 140);
+               if (!hasEnteredRegion)
                {
-                  isPlaying = true;
-                  clip = AudioSystem.getClip();
-                  clip.open(AudioSystem.getAudioInputStream(file));
-                  if (loop)
+                  hasEnteredRegion = true;
+                  startPlaying(false);
+               }
+            }
+            else
+            {
+               parent.fill(0, 0, 255, 140);
+               hasEnteredRegion = false;
+            }
+            break;
+         case ACTIVE:
+            if (isColliding)
+            {
+               parent.fill(0, 255, 255, 140);
+               if (!isPlayingLoop)
+               {
+                  startPlaying(true);
+               }
+            }
+            else
+            {
+               parent.fill(0, 0, 255, 140);
+               isPlayingLoop = false;
+               stopPlaying();
+            }
+            break;
+         case TOGGLE:
+            if (isColliding)
+            {
+               if (!hasEnteredRegion)
+               {
+                  hasEnteredRegion = true;
+                  if (isPlayingLoop)
                   {
-                     clip.loop(Clip.LOOP_CONTINUOUSLY);
+                     isPlayingLoop = false;
+                     stopPlaying();
                   }
                   else
                   {
-                     clip.start();
+                     startPlaying(true);
                   }
                }
-               else if (loopMode == LoopMode.TOGGLE)
-               {
-                  isPlaying = false;
-                  if (loop && clip != null)
-                  {
-                     clip.stop();
-                  }
-               }
-
             }
-            catch (Exception e)
+            else
             {
+               hasEnteredRegion = false;
             }
-         }
-      }
-      else
-      {
-         parent.fill(0, 0, 255, 140);
-         hasEnteredRegion = false;
-         if (loop && clip != null && loopMode == LoopMode.ACTIVE)
-         {
-            clip.stop();
-         }
+
+            //Choose colors for region
+            if (isPlayingLoop)
+            {
+               parent.fill(0, 255, 255, 140);
+            }
+            else
+            {
+               parent.fill(0, 0, 255, 140);
+            }
+            break;
       }
 
       parent.rect(x, y, width, height);
