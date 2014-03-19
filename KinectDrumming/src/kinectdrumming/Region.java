@@ -2,6 +2,7 @@ package kinectdrumming;
 
 import java.io.File;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public abstract class Region
 {
@@ -11,7 +12,7 @@ public abstract class Region
    int height;
    boolean isColliding = false;
    File file;
-   //label or picture
+   PImage image; //label or picture
    protected static PApplet parent;
 
    public Region(PApplet parent)
@@ -39,6 +40,14 @@ public abstract class Region
       }
       catch (Exception e)
       {
+      }
+   }
+
+   public void setImagePath(String path)
+   {
+      if (!"".equals(path))
+      {
+         image = parent.loadImage(path);
       }
    }
 }

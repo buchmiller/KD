@@ -1,7 +1,6 @@
 package kinectdrumming;
 
 import static kinectdrumming.Region.parent;
-import java.io.File;
 import processing.core.PApplet;
 
 public class SwitchRegion extends Region
@@ -9,22 +8,17 @@ public class SwitchRegion extends Region
    private boolean hasEnteredRegion = false;
    private boolean hasChanged = false;
 
-   public SwitchRegion(PApplet parent, float scale, int x, int y, int width, int height, String picturePath)
+   public SwitchRegion(PApplet parent, float scale, int x, int y, int width, int height, String imagePath)
    {
       super(parent);
       this.x = (int) (x * scale);
       this.y = (int) (y * scale);
       this.width = (int) (width * scale);
       this.height = (int) (height * scale);
-      try
+
+      if (!"".equals(imagePath))
       {
-         if (!"".equals(picturePath))
-         {
-            this.file = new File(picturePath);
-         }
-      }
-      catch (Exception e)
-      {
+         image = parent.loadImage(imagePath);
       }
    }
 
@@ -35,7 +29,7 @@ public class SwitchRegion extends Region
 
       if (isColliding)
       {
-         parent.fill(0, 255, 255, 140);
+         parent.fill(255, 255, 255, 140);
          if (!hasEnteredRegion)
          {
             hasEnteredRegion = true;
@@ -48,11 +42,13 @@ public class SwitchRegion extends Region
       }
       else
       {
-         parent.fill(0, 0, 255, 140);
+         parent.fill(100, 100, 100, 140);
          hasEnteredRegion = false;
       }
 
       parent.rect(x, y, width, height);
+      parent.tint(255, 140);
+      parent.image(image, x + 20, y + 20, width - 40, height - 40);
 
       isColliding = false; //reset
    }

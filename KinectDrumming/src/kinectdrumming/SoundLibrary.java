@@ -31,7 +31,15 @@ public class SoundLibrary
          "sounds/mario/smb3_coin.wav",
          "sounds/mario/smb3_fireball.wav",
          "sounds/mario/smb3_jump.wav",
-         "sounds/mario/smb3_hurry_up.wav"
+         "sounds/mario/smb3_hurry_up.wav",
+         "images/mario/coin.png",
+         "images/mario/fireball.png",
+         "images/mario/jump.png",
+         "images/mario/life.png",
+         "images/mario/pipe.png",
+         "images/mario/powerup.png",
+         "images/mario/coin.png",
+         "images/mario/star.png"
       //add a picture path for library?
       });
       tempMap.put(Name.SYNTH, new String[]
@@ -44,7 +52,15 @@ public class SoundLibrary
          "sounds/bloop2.wav",
          "sounds/synth_loop.wav",
          "sounds/beat.wav",
-         "sounds/beat.wav"
+         "sounds/beat.wav",
+         "images/mario/coin.png",
+         "images/mario/coin.png",
+         "images/mario/coin.png",
+         "images/mario/coin.png",
+         "images/mario/coin.png",
+         "images/mario/coin.png",
+         "images/mario/coin.png",
+         "images/mario/coin.png"
       });
       tempMap.put(Name.BIT8, new String[]
       {
@@ -56,7 +72,15 @@ public class SoundLibrary
          "sounds/8bit/5.wav",
          "sounds/8bit/6.wav",
          "sounds/8bit/7.wav",
-         "sounds/8bit/8.wav"
+         "sounds/8bit/8.wav",
+         "images/8bit/A.png",
+         "images/8bit/B.png",
+         "images/8bit/C.png",
+         "images/8bit/D.png",
+         "images/8bit/E.png",
+         "images/8bit/F.png",
+         "images/8bit/G.png",
+         "images/8bit/A.png"
       });
       files = Collections.unmodifiableMap(tempMap);
    }
@@ -87,6 +111,16 @@ public class SoundLibrary
       }
 
       return files.get(activeLibrary)[fileNum + 1];
+   }
+
+   public static String getImagePath(int fileNum)
+   {
+      if (fileNum < 0 || fileNum > 7)
+      {
+         return "";
+      }
+
+      return files.get(activeLibrary)[fileNum + 9];
    }
 
    //TODO add getPicturePath?

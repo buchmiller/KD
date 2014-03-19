@@ -15,13 +15,20 @@ public class SoundRegion extends Region
    private boolean hasEnteredRegion = false;
    //label or picture
 
-   public SoundRegion(PApplet parent, float scale, int x, int y, int width, int height, String soundPath)
+   public SoundRegion(PApplet parent, float scale, int x, int y, int width, int height, int regionNum)
    {
       super(parent);
       this.x = (int) (x * scale);
       this.y = (int) (y * scale);
       this.width = (int) (width * scale);
       this.height = (int) (height * scale);
+      String soundPath = SoundLibrary.getSoundPath(regionNum);
+      String imagePath = SoundLibrary.getImagePath(regionNum);
+
+      if (!"".equals(imagePath))
+      {
+         image = parent.loadImage(imagePath);
+      }
 
       try
       {
@@ -33,11 +40,6 @@ public class SoundRegion extends Region
       catch (Exception e)
       {
       }
-   }
-
-   public SoundRegion(PApplet parent, float scale, int x, int y, int width, int height)
-   {
-      this(parent, scale, x, y, width, height, "");
    }
 
    public void setLoopMode(LoopMode loopMode)
@@ -92,7 +94,7 @@ public class SoundRegion extends Region
          case NONE:
             if (isColliding)
             {
-               parent.fill(0, 255, 255, 140);
+               parent.fill(255, 255, 255, 140);
                if (!hasEnteredRegion)
                {
                   hasEnteredRegion = true;
@@ -101,14 +103,14 @@ public class SoundRegion extends Region
             }
             else
             {
-               parent.fill(0, 0, 255, 140);
+               parent.fill(100, 100, 100, 140);
                hasEnteredRegion = false;
             }
             break;
          case ACTIVE:
             if (isColliding)
             {
-               parent.fill(0, 255, 255, 140);
+               parent.fill(255, 255, 255, 140);
                if (!isPlayingLoop)
                {
                   startPlaying(true);
@@ -116,7 +118,7 @@ public class SoundRegion extends Region
             }
             else
             {
-               parent.fill(0, 0, 255, 140);
+               parent.fill(100, 100, 100, 140);
                isPlayingLoop = false;
                stopPlaying();
             }
@@ -146,16 +148,18 @@ public class SoundRegion extends Region
             //Choose colors for region
             if (isPlayingLoop)
             {
-               parent.fill(0, 255, 255, 140);
+               parent.fill(255, 255, 255, 140);
             }
             else
             {
-               parent.fill(0, 0, 255, 140);
+               parent.fill(100, 100, 100, 140);
             }
             break;
       }
 
       parent.rect(x, y, width, height);
+      parent.tint(255, 140);
+      parent.image(image, x + 20, y + 20, width - 40, height - 40);
 
       isColliding = false; //reset
    }
