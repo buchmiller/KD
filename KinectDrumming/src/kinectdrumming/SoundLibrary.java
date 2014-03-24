@@ -8,7 +8,7 @@ public class SoundLibrary
 {
    public static enum Name
    {
-      MARIO, SYNTH, BIT8
+      MARIO, DRUMS1, DRUMS2, TRIBAL, BIT8
    }
 
    public static enum LoopMode
@@ -32,7 +32,7 @@ public class SoundLibrary
          "sounds/mario/smb3_power_up.wav",
          "sounds/mario/smb3_pipe.wav",
          "sounds/mario/smb3_fireball.wav",
-         "images/mario/coin.png",
+         "images/mario/mario.png",
          "images/mario/life.png",
          "images/mario/jump.png",
          "images/mario/coin.png",
@@ -42,17 +42,17 @@ public class SoundLibrary
          "images/mario/fireball.png"
       //add a picture path for library?
       });
-      tempMap.put(Name.SYNTH, new String[]
+      tempMap.put(Name.DRUMS1, new String[]
       {
-         "00000T00",
-         "sounds/beat.wav",
-         "sounds/blip.wav",
-         "sounds/blip1.wav",
-         "sounds/bloop.wav",
-         "sounds/bloop2.wav",
-         "sounds/synth_loop.wav",
-         "sounds/beat.wav",
-         "sounds/beat.wav",
+         "T0000000",
+         "sounds/drumset1/easy_guitar.wav", //replace with loop
+         "sounds/drumset1/hat.wav",
+         "sounds/drumset1/hat-open-3.wav",
+         "sounds/drumset1/kick-001.wav",
+         "sounds/drumset1/drum_sticks.wav",
+         "sounds/drumset1/snare-rimshot.wav",
+         "sounds/drumset1/snare-rim.wav",
+         "sounds/drumset1/snare.wav",
          "images/mario/coin.png",
          "images/mario/coin.png",
          "images/mario/coin.png",
@@ -61,6 +61,46 @@ public class SoundLibrary
          "images/mario/coin.png",
          "images/mario/coin.png",
          "images/mario/coin.png"
+      });
+      tempMap.put(Name.DRUMS2, new String[]
+      {
+         "00000000",
+         "sounds/drumset2/snare-001.wav",
+         "sounds/drumset2/snare-006.wav",
+         "sounds/drumset2/tom.wav",
+         "sounds/drumset2/kick-006.wav",
+         "sounds/drumset2/perc-1.wav",
+         "sounds/drumset2/ride-bell.wav",
+         "sounds/drumset2/ride.wav",
+         "sounds/drumset2/sidestick.wav",
+         "images/mario/fireball.png",
+         "images/mario/fireball.png",
+         "images/mario/fireball.png",
+         "images/mario/fireball.png",
+         "images/mario/fireball.png",
+         "images/mario/fireball.png",
+         "images/mario/fireball.png",
+         "images/mario/fireball.png"
+      });
+      tempMap.put(Name.TRIBAL, new String[]
+      {
+         "0000T000",
+         "sounds/tribal/tribalfloor.wav",
+         "sounds/tribal/bongos.wav",
+         "sounds/tribal/bongo_1.wav",
+         "sounds/tribal/bongo_2.wav",
+         "sounds/tribal/tribal-beat-1.wav",
+         "sounds/tribal/bongo-split.wav",
+         "sounds/tribal/bongo_3.wav",
+         "sounds/tribal/bongo_4.wav",
+         "images/mario/star.png",
+         "images/mario/star.png",
+         "images/mario/star.png",
+         "images/mario/star.png",
+         "images/mario/star.png",
+         "images/mario/star.png",
+         "images/mario/star.png",
+         "images/mario/star.png"
       });
       tempMap.put(Name.BIT8, new String[]
       {
