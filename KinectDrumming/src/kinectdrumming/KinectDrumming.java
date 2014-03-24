@@ -22,7 +22,6 @@ public class KinectDrumming extends PApplet
    SwitchRegion switchRegion;
    private Map<Integer, PVector> handPositions = new HashMap<>();
    private static final int maxNumHands = 2;
-   private boolean hasKinect = false;
 
    @Override
    public boolean sketchFullScreen()
@@ -45,11 +44,10 @@ public class KinectDrumming extends PApplet
       System.out.println("scaledWidth: " + scaledWidth);
       System.out.println("scaledHeight: " + scaledHeight);
       size((int) scaledWidth, (int) scaledHeight);
-//      frame.setResizable(false);
+      frame.setResizable(false);
 
       context = new SimpleOpenNI(this);
-      hasKinect = context.isInit();
-      if (hasKinect == false)
+      if (context.isInit() == false)
       {
          println("Can't init SimpleOpenNI, maybe the camera is not connected!");
       }
@@ -110,43 +108,46 @@ public class KinectDrumming extends PApplet
       context.update();
 
       // draw depthImageMap
-      if (hasKinect)
+      if (context.isInit())
       {
          image(context.depthImage(), 0, 0, scaledWidth, scaledHeight);
 
-         if (handPositions.size() > 0)
+         for (Map.Entry mapEntry : handPositions.entrySet())
          {
-            for (Map.Entry mapEntry : handPositions.entrySet())
-            {
 //            int handId = (Integer) mapEntry.getKey();
-               PVector pVec = (PVector) mapEntry.getValue();
+            PVector pVec = (PVector) mapEntry.getValue();
 
-               // convert real world point to projective space
-               PVector projPos = new PVector();
-               context.convertRealWorldToProjective(pVec, projPos);
-               float handPosX = projPos.x * scale;
-               float handPosY = projPos.y * scale;
+            // convert real world point to projective space
+            PVector projPos = new PVector();
+            context.convertRealWorldToProjective(pVec, projPos);
+            float handPosX = projPos.x * scale;
+            float handPosY = projPos.y * scale;
 
-               //determine region collisions
-               calcCollisions(handPosX, handPosY);
+            //determine region collisions
+            calcCollisions(handPosX, handPosY);
 
-               //determine if library has been switched
-               determineLibrary();
+            //determine if library has been switched
+            determineLibrary();
 
-               // draw the circles on the hands
-               drawHand(handPosX, handPosY);
-            }
+            // draw the circles on the hands
+            drawHand(handPosX, handPosY);
          }
       }
       else
       {
          //Use this code block for testing with mouse cursor
+         background(80);
          calcCollisions(mouseX, mouseY);
          drawHand(mouseX, mouseY);
          determineLibrary();
       }
 
       drawRegions(); //draw interactive regions
+
+      //output current framerate
+      fill(255, 0, 0);
+      textSize(32);
+      text("fps: " + (int)frameRate, 10, 30);
    }
 
    private void determineLibrary()
