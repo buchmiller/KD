@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import kinectdrumming.SoundLibrary.LoopMode;
 import processing.core.*;
 import static processing.core.PApplet.concat;
 import static processing.core.PApplet.println;
@@ -23,7 +22,6 @@ public class KinectDrumming extends PApplet
    SwitchRegion switchRegion;
    private Map<Integer, PVector> handPositions = new HashMap<>();
    private static final int maxNumHands = 2;
-   PImage img;
 
    @Override
    public boolean sketchFullScreen()
@@ -35,7 +33,6 @@ public class KinectDrumming extends PApplet
    public void setup()
    {
       frameRate(30);
-      img = loadImage("what.jpg");
       System.out.println("displayWidth: " + displayWidth);
       System.out.println("displayHeight: " + displayHeight);
       System.out.println("imageWidth: " + imageWidth);
@@ -44,8 +41,9 @@ public class KinectDrumming extends PApplet
       System.out.println("Scale: " + scale);
       scaledWidth = imageWidth * scale;
       scaledHeight = imageHeight * scale;
+      System.out.println("scaledWidth: " + scaledWidth);
+      System.out.println("scaledHeight: " + scaledHeight);
       size((int) scaledWidth, (int) scaledHeight);
-//      size(displayWidth, displayHeight);
 //      frame.setResizable(false);
 
       context = new SimpleOpenNI(this);
@@ -74,8 +72,6 @@ public class KinectDrumming extends PApplet
       strokeWeight(3);
       smooth();
 
-//      SoundLibrary.switchLibrary(SoundLibrary.Name.SYNTH);
-
       SoundRegion region;
       region = new SoundRegion(this, scale, 0, 50, 100, 100, 0);
       region.setLoopMode(SoundLibrary.getLoopMode(0));
@@ -90,7 +86,6 @@ public class KinectDrumming extends PApplet
       region.setLoopMode(SoundLibrary.getLoopMode(3));
       regions.add(region);
 
-//      regions.add(new RecordRegion(this, scale, 190, 0, 80, 60));
       switchRegion = new SwitchRegion(this, scale, 360, 0, 60, 60, "images/note.png");
       regions.add(switchRegion);
 
@@ -115,10 +110,7 @@ public class KinectDrumming extends PApplet
       context.update();
 
       // draw depthImageMap
-      //image(context.depthImage(),0,0);
-//      image(context.userImage(), 0, 0);
 //      image(context.depthImage(), 0, 0, scaledWidth, scaledHeight);
-      //image(img, 200, 200);
 
       //Use this code block for testing with mouse cursor
       calcCollisions(mouseX, mouseY);
@@ -165,7 +157,6 @@ public class KinectDrumming extends PApplet
                sr.setPath(SoundLibrary.getSoundPath(i));
                sr.setImagePath(SoundLibrary.getImagePath(i));
                sr.setLoopMode(SoundLibrary.getLoopMode(i));
-               //sr.setPicture(SoundLibrary.getPicture(i));
                i++;
             }
             else if (r instanceof SwitchRegion)
