@@ -23,23 +23,23 @@ public class SoundLibrary
       Map<Name, String[]> tempMap = new HashMap<>();
       tempMap.put(Name.MARIO, new String[]
       {
-         "00010001",
-         "sounds/mario/smb3_coin.wav",
-         "sounds/mario/smb3_fireball.wav",
-         "sounds/mario/smb3_frog_mario_walk.wav",
+         "1000T000",
          "sounds/mario/smb3_level_clear.wav",
-         "sounds/mario/smb3_coin.wav",
-         "sounds/mario/smb3_fireball.wav",
+         "sounds/mario/smb3_1_up.wav",
          "sounds/mario/smb3_jump.wav",
-         "sounds/mario/smb3_hurry_up.wav",
+         "sounds/mario/smb3_coin.wav",
+         "sounds/mario/star_power.wav",
+         "sounds/mario/smb3_power_up.wav",
+         "sounds/mario/smb3_pipe.wav",
+         "sounds/mario/smb3_fireball.wav",
          "images/mario/coin.png",
-         "images/mario/fireball.png",
-         "images/mario/jump.png",
          "images/mario/life.png",
-         "images/mario/pipe.png",
-         "images/mario/powerup.png",
+         "images/mario/jump.png",
          "images/mario/coin.png",
-         "images/mario/star.png"
+         "images/mario/star.png",
+         "images/mario/powerup.png",
+         "images/mario/pipe.png",
+         "images/mario/fireball.png"
       //add a picture path for library?
       });
       tempMap.put(Name.SYNTH, new String[]
@@ -65,14 +65,14 @@ public class SoundLibrary
       tempMap.put(Name.BIT8, new String[]
       {
          "11111111",
-         "sounds/8bit/1.wav",
-         "sounds/8bit/2.wav",
-         "sounds/8bit/3.wav",
-         "sounds/8bit/4.wav",
-         "sounds/8bit/5.wav",
-         "sounds/8bit/6.wav",
-         "sounds/8bit/7.wav",
-         "sounds/8bit/8.wav",
+         "sounds/8bit/tone_1.wav",
+         "sounds/8bit/tone_2.wav",
+         "sounds/8bit/tone_3.wav",
+         "sounds/8bit/tone_4.wav",
+         "sounds/8bit/tone_5.wav",
+         "sounds/8bit/tone_6.wav",
+         "sounds/8bit/tone_7.wav",
+         "sounds/8bit/tone_8.wav",
          "images/8bit/A.png",
          "images/8bit/B.png",
          "images/8bit/C.png",
