@@ -22,6 +22,7 @@ public class KinectDrumming extends PApplet
    SwitchRegion switchRegion;
    private Map<Integer, PVector> handPositions = new HashMap<>();
    private static final int maxNumHands = 2;
+   private boolean hasKinect = false;
 
    @Override
    public boolean sketchFullScreen()
@@ -47,12 +48,11 @@ public class KinectDrumming extends PApplet
 //      frame.setResizable(false);
 
       context = new SimpleOpenNI(this);
-//      if (context.isInit() == false)
-//      {
-//         println("Can't init SimpleOpenNI, maybe the camera is not connected!");
-//         exit();
-//         return;
-//      }
+      hasKinect = context.isInit();
+      if (hasKinect == false)
+      {
+         println("Can't init SimpleOpenNI, maybe the camera is not connected!");
+      }
 
       context.enableDepth(); // enable depthMap generation
 
@@ -110,35 +110,40 @@ public class KinectDrumming extends PApplet
       context.update();
 
       // draw depthImageMap
-//      image(context.depthImage(), 0, 0, scaledWidth, scaledHeight);
-
-      //Use this code block for testing with mouse cursor
-      calcCollisions(mouseX, mouseY);
-      drawHand(mouseX, mouseY);
-      determineLibrary();
-
-      if (handPositions.size() > 0)
+      if (hasKinect)
       {
-         for (Map.Entry mapEntry : handPositions.entrySet())
+         image(context.depthImage(), 0, 0, scaledWidth, scaledHeight);
+
+         if (handPositions.size() > 0)
          {
+            for (Map.Entry mapEntry : handPositions.entrySet())
+            {
 //            int handId = (Integer) mapEntry.getKey();
-            PVector pVec = (PVector) mapEntry.getValue();
+               PVector pVec = (PVector) mapEntry.getValue();
 
-            // convert real world point to projective space
-            PVector projPos = new PVector();
-            context.convertRealWorldToProjective(pVec, projPos);
-            float handPosX = projPos.x * scale;
-            float handPosY = projPos.y * scale;
+               // convert real world point to projective space
+               PVector projPos = new PVector();
+               context.convertRealWorldToProjective(pVec, projPos);
+               float handPosX = projPos.x * scale;
+               float handPosY = projPos.y * scale;
 
-            //determine region collisions
-            calcCollisions(handPosX, handPosY);
+               //determine region collisions
+               calcCollisions(handPosX, handPosY);
 
-            //determine if library has been switched
-            determineLibrary();
+               //determine if library has been switched
+               determineLibrary();
 
-            // draw the circles on the hands
-            drawHand(handPosX, handPosY);
+               // draw the circles on the hands
+               drawHand(handPosX, handPosY);
+            }
          }
+      }
+      else
+      {
+         //Use this code block for testing with mouse cursor
+         calcCollisions(mouseX, mouseY);
+         drawHand(mouseX, mouseY);
+         determineLibrary();
       }
 
       drawRegions(); //draw interactive regions
