@@ -93,14 +93,14 @@ public class SoundLibrary
          "sounds/tribal/bongo-split.wav",
          "sounds/tribal/bongo_3.wav",
          "sounds/tribal/bongo_4.wav",
-         "images/mario/star.png",
-         "images/mario/star.png",
-         "images/mario/star.png",
-         "images/mario/star.png",
-         "images/mario/star.png",
-         "images/mario/star.png",
-         "images/mario/star.png",
-         "images/mario/star.png"
+         "images/tribal/conga.png",
+         "images/tribal/bongos.png",
+         "images/tribal/bongo1.png",
+         "images/tribal/bongo2.png",
+         "images/tribal/bongo1.png",
+         "images/tribal/bongo1.png",
+         "images/tribal/bongo3.png",
+         "images/tribal/bongo4.png"
       });
       tempMap.put(Name.BIT8, new String[]
       {
