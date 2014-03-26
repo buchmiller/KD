@@ -87,7 +87,7 @@ public class SoundRegion extends Region
    @Override
    public void draw() //needs to know if it is being intersected
    {
-      parent.stroke(0, 0, 0, 0); //no border
+      parent.stroke(borderColor); //no border
 
       switch (loopMode)
       {

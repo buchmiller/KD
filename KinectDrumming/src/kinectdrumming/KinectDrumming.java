@@ -22,11 +22,12 @@ public class KinectDrumming extends PApplet
    SwitchRegion switchRegion;
    private Map<Integer, PVector> handPositions = new HashMap<>();
    private static final int maxNumHands = 2;
-   private int backColor = color(0, 0, 0);
-   private int buttonColor = color(255, 255, 255);
-   private int buttonOnColor = color(255, 255, 0);
-   private int handColor = color(255, 0, 0);
-   private int handBorderColor = color(255, 255, 0);
+   private int backColor = color(49, 101, 156);
+   private int buttonColor = color(99, 154, 206);
+   private int buttonOnColor = color(148, 186, 231);
+   private int buttonBorderColor = color(74, 121, 165);
+   private int handColor = color(74, 121, 165);
+   private int handBorderColor = color(255, 255, 255);
 //   private float timer = 0;
 //   private float delay = 1000 / 2f; //2 fps
 //   private List<Integer> timeData = new ArrayList<>();
@@ -35,7 +36,7 @@ public class KinectDrumming extends PApplet
    @Override
    public boolean sketchFullScreen()
    {
-      return false;
+      return true;
    }
 
    @Override
@@ -76,20 +77,20 @@ public class KinectDrumming extends PApplet
       background(200, 0, 0);
 
       stroke(0, 0, 255);
-      strokeWeight(3);
+      strokeWeight(10);
       smooth();
 
       SoundRegion region;
       region = new SoundRegion(this, scale, 0, 50, 100, 100, 0);
       region.setLoopMode(SoundLibrary.getLoopMode(0));
       regions.add(region);
-      region = new SoundRegion(this, scale, 0, 152, 100, 100, 1);
+      region = new SoundRegion(this, scale, 0, 150, 100, 100, 1);
       region.setLoopMode(SoundLibrary.getLoopMode(1));
       regions.add(region);
-      region = new SoundRegion(this, scale, 0, 254, 100, 100, 2);
+      region = new SoundRegion(this, scale, 0, 250, 100, 100, 2);
       region.setLoopMode(SoundLibrary.getLoopMode(2));
       regions.add(region);
-      region = new SoundRegion(this, scale, 100, 356, 100, 100, 3);
+      region = new SoundRegion(this, scale, 100, 350, 100, 100, 3);
       region.setLoopMode(SoundLibrary.getLoopMode(3));
       regions.add(region);
 
@@ -99,13 +100,13 @@ public class KinectDrumming extends PApplet
       region = new SoundRegion(this, scale, imageWidth - 100, 50, 100, 100, 4);
       region.setLoopMode(SoundLibrary.getLoopMode(4));
       regions.add(region);
-      region = new SoundRegion(this, scale, imageWidth - 100, 152, 100, 100, 5);
+      region = new SoundRegion(this, scale, imageWidth - 100, 150, 100, 100, 5);
       region.setLoopMode(SoundLibrary.getLoopMode(5));
       regions.add(region);
-      region = new SoundRegion(this, scale, imageWidth - 100, 254, 100, 100, 6);
+      region = new SoundRegion(this, scale, imageWidth - 100, 250, 100, 100, 6);
       region.setLoopMode(SoundLibrary.getLoopMode(6));
       regions.add(region);
-      region = new SoundRegion(this, scale, imageWidth - 200, 356, 100, 100, 7);
+      region = new SoundRegion(this, scale, imageWidth - 200, 350, 100, 100, 7);
       region.setLoopMode(SoundLibrary.getLoopMode(7));
       regions.add(region);
 
@@ -113,6 +114,7 @@ public class KinectDrumming extends PApplet
       {
          r.setNormalColor(buttonColor);
          r.setActiveColor(buttonOnColor);
+         r.setBorderColor(buttonBorderColor);
       }
    }
 
@@ -126,6 +128,7 @@ public class KinectDrumming extends PApplet
       context.update(); //2-3 ms, 5-6 ms with userImage
 
       background(backColor);
+      strokeWeight(10);
       drawRegions(); //draw interactive regions //6-17 ms
 
       // draw depthImageMap
@@ -152,6 +155,7 @@ public class KinectDrumming extends PApplet
             determineLibrary();
 
             // draw the circles on the hands
+            strokeWeight(4);
             drawHand(handPosX, handPosY);
          }
       }
@@ -159,6 +163,7 @@ public class KinectDrumming extends PApplet
       {
          //Use this code block for testing with mouse cursor
          calcCollisions(mouseX, mouseY);
+         strokeWeight(4);
          drawHand(mouseX, mouseY);
          determineLibrary();
       }

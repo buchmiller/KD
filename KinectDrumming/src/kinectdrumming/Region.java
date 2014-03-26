@@ -16,15 +16,21 @@ public abstract class Region
    protected static PApplet parent;
    protected int normalColor;
    protected int activeColor;
+   protected int borderColor;
 
-   public void setNormalColor(int myColor)
+   public void setNormalColor(int normalColor)
    {
-      this.normalColor = myColor;
+      this.normalColor = normalColor;
    }
 
    public void setActiveColor(int activeColor)
    {
       this.activeColor = activeColor;
+   }
+
+   public void setBorderColor(int borderColor)
+   {
+      this.borderColor = borderColor;
    }
 
    public Region(PApplet parent)
