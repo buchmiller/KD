@@ -94,7 +94,7 @@ public class SoundRegion extends Region
          case NONE:
             if (isColliding)
             {
-               parent.fill(255, 255, 255, 140);
+               parent.fill(activeColor);
                if (!hasEnteredRegion)
                {
                   hasEnteredRegion = true;
@@ -103,14 +103,14 @@ public class SoundRegion extends Region
             }
             else
             {
-               parent.fill(100, 100, 100, 140);
+               parent.fill(normalColor);
                hasEnteredRegion = false;
             }
             break;
          case ACTIVE:
             if (isColliding)
             {
-               parent.fill(255, 255, 255, 140);
+               parent.fill(activeColor);
                if (!isPlayingLoop)
                {
                   startPlaying(true);
@@ -118,7 +118,7 @@ public class SoundRegion extends Region
             }
             else
             {
-               parent.fill(100, 100, 100, 140);
+               parent.fill(normalColor);
                isPlayingLoop = false;
                stopPlaying();
             }
@@ -148,19 +148,19 @@ public class SoundRegion extends Region
             //Choose colors for region
             if (isPlayingLoop)
             {
-               parent.fill(255, 255, 255, 140);
+               parent.fill(activeColor);
             }
             else
             {
-               parent.fill(100, 100, 100, 140);
+               parent.fill(normalColor);
             }
             break;
       }
 
       parent.rect(x, y, width, height);
-      parent.tint(255, 140);
+//      parent.tint(255, 140);
       parent.image(image, x + 20, y + 20, width - 40, height - 40);
-
+//      parent.text("test", x, y);
       isColliding = false; //reset
    }
 

@@ -14,6 +14,18 @@ public abstract class Region
    File file;
    PImage image; //label or picture
    protected static PApplet parent;
+   protected int normalColor;
+   protected int activeColor;
+
+   public void setNormalColor(int myColor)
+   {
+      this.normalColor = myColor;
+   }
+
+   public void setActiveColor(int activeColor)
+   {
+      this.activeColor = activeColor;
+   }
 
    public Region(PApplet parent)
    {

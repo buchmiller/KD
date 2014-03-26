@@ -29,7 +29,7 @@ public class SwitchRegion extends Region
 
       if (isColliding)
       {
-         parent.fill(255, 255, 255, 140);
+         parent.fill(activeColor);
          if (!hasEnteredRegion)
          {
             hasEnteredRegion = true;
@@ -42,12 +42,12 @@ public class SwitchRegion extends Region
       }
       else
       {
-         parent.fill(100, 100, 100, 140);
+         parent.fill(normalColor);
          hasEnteredRegion = false;
       }
 
       parent.rect(x, y, width, height);
-      parent.tint(255, 140);
+//      parent.tint(255, 140);
       parent.image(image, x + 20, y + 20, width - 40, height - 40);
 
       isColliding = false; //reset
