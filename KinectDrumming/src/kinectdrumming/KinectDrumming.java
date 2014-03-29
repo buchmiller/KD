@@ -19,7 +19,7 @@ public class KinectDrumming extends PApplet
    float scaledWidth;
    float scaledHeight;
    private List<Region> regions = new ArrayList<>();
-   SwitchRegion switchRegion;
+   SwitchRegion[] switchRegions = new SwitchRegion[2];
    private Map<Integer, PVector> handPositions = new HashMap<>();
    private static final int maxNumHands = 2;
    private int backColor = color(49, 101, 156);
@@ -94,8 +94,12 @@ public class KinectDrumming extends PApplet
       region.setLoopMode(SoundLibrary.getLoopMode(3));
       regions.add(region);
 
-      switchRegion = new SwitchRegion(this, scale, 360, 0, 60, 60, "images/note.png");
-      regions.add(switchRegion);
+      switchRegions[0] = new SwitchRegion(this, scale, 240, 0, 60, 60, "images/note.png");
+      switchRegions[0].setRightSwitch(false);
+      regions.add(switchRegions[0]);
+      switchRegions[1] = new SwitchRegion(this, scale, 360, 0, 60, 60, "images/note.png");
+      switchRegions[1].setRightSwitch(true);
+      regions.add(switchRegions[1]);
 
       region = new SoundRegion(this, scale, imageWidth - 100, 50, 100, 100, 4);
       region.setLoopMode(SoundLibrary.getLoopMode(4));
@@ -195,7 +199,7 @@ public class KinectDrumming extends PApplet
 
    private void determineLibrary()
    {
-      if (switchRegion.hasChanged()) //change the sound library
+      if (switchRegions[0].hasChanged() || switchRegions[1].hasChanged()) //change the sound library
       {
          int i = 0;
          for (Region r : regions)

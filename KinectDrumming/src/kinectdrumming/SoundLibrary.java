@@ -143,6 +143,14 @@ public class SoundLibrary
       System.out.println("New library - " + activeLibrary.toString());
    }
 
+   public static void previousLibrary()
+   {
+      activeLibrary = activeLibrary.ordinal() > 0
+            ? Name.values()[activeLibrary.ordinal() - 1]
+            : Name.values()[Name.values().length - 1];
+      System.out.println("New library - " + activeLibrary.toString());
+   }
+
    public static String getSoundPath(int fileNum)
    {
       if (fileNum < 0 || fileNum > 7)

@@ -7,6 +7,7 @@ public class SwitchRegion extends Region
 {
    private boolean hasEnteredRegion = false;
    private boolean hasChanged = false;
+   private boolean isRightSwitch = true;
 
    public SwitchRegion(PApplet parent, float scale, int x, int y, int width, int height, String imagePath)
    {
@@ -33,7 +34,14 @@ public class SwitchRegion extends Region
          if (!hasEnteredRegion)
          {
             hasEnteredRegion = true;
-            SoundLibrary.nextLibrary();
+            if (isRightSwitch)
+            {
+               SoundLibrary.nextLibrary();
+            }
+            else
+            {
+               SoundLibrary.previousLibrary();
+            }
             hasChanged = true;
             //TODO set picture path
 
@@ -51,6 +59,11 @@ public class SwitchRegion extends Region
       parent.image(image, x + 20, y + 20, width - 40, height - 40);
 
       isColliding = false; //reset
+   }
+
+   public void setRightSwitch(boolean isRightSwitch)
+   {
+      this.isRightSwitch = isRightSwitch;
    }
 
    public boolean hasChanged()
