@@ -94,10 +94,10 @@ public class KinectDrumming extends PApplet
       region.setLoopMode(SoundLibrary.getLoopMode(3));
       regions.add(region);
 
-      switchRegions[0] = new SwitchRegion(this, scale, 240, 0, 60, 60, SoundLibrary.getImagePath(false));
+      switchRegions[0] = new SwitchRegion(this, scale, 260, 0, 60, 60, SoundLibrary.getImagePath(false));
       switchRegions[0].setRightSwitch(false);
       regions.add(switchRegions[0]);
-      switchRegions[1] = new SwitchRegion(this, scale, 360, 0, 60, 60, SoundLibrary.getImagePath(true));
+      switchRegions[1] = new SwitchRegion(this, scale, 320, 0, 60, 60, SoundLibrary.getImagePath(true));
       switchRegions[1].setRightSwitch(true);
       regions.add(switchRegions[1]);
 
