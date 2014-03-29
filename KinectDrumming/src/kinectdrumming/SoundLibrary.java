@@ -24,6 +24,7 @@ public class SoundLibrary
       tempMap.put(Name.MARIO, new String[]
       {
          "1000T000",
+         "images/mario/mario.png",
          "sounds/mario/smb3_level_clear.wav",
          "sounds/mario/smb3_1_up.wav",
          "sounds/mario/smb3_jump.wav",
@@ -45,6 +46,7 @@ public class SoundLibrary
       tempMap.put(Name.DRUMS1, new String[]
       {
          "T0000000",
+         "images/mario/coin.png",
          "sounds/drumset1/easy_guitar.wav", //replace with loop
          "sounds/drumset1/hat.wav",
          "sounds/drumset1/hat-open-3.wav",
@@ -65,6 +67,7 @@ public class SoundLibrary
       tempMap.put(Name.DRUMS2, new String[]
       {
          "00000000",
+         "images/mario/fireball.png",
          "sounds/drumset2/snare-001.wav",
          "sounds/drumset2/snare-006.wav",
          "sounds/drumset2/tom.wav",
@@ -85,12 +88,13 @@ public class SoundLibrary
       tempMap.put(Name.TRIBAL, new String[]
       {
          "0000T000",
-         "sounds/tribal/tribalfloor.wav",
+         "images/tribal/bongo4.png",
+         "sounds/tribal/bongo-split.wav",
          "sounds/tribal/bongos.wav",
          "sounds/tribal/bongo_1.wav",
          "sounds/tribal/bongo_2.wav",
          "sounds/tribal/tribal-beat-1.wav",
-         "sounds/tribal/bongo-split.wav",
+         "sounds/tribal/tribalfloor.wav",
          "sounds/tribal/bongo_3.wav",
          "sounds/tribal/bongo_4.wav",
          "images/tribal/conga.png",
@@ -105,6 +109,7 @@ public class SoundLibrary
       tempMap.put(Name.BIT8, new String[]
       {
          "11111111",
+         "images/8bit/A.png",
          "sounds/8bit/tone_1.wav",
          "sounds/8bit/tone_2.wav",
          "sounds/8bit/tone_3.wav",
@@ -167,7 +172,7 @@ public class SoundLibrary
          return "";
       }
 
-      return files.get(activeLibrary)[fileNum + 1];
+      return files.get(activeLibrary)[fileNum + 2];
    }
 
    public static String getImagePath(int fileNum)
@@ -177,13 +182,13 @@ public class SoundLibrary
          return "";
       }
 
-      return files.get(activeLibrary)[fileNum + 9];
+      return files.get(activeLibrary)[fileNum + 10];
    }
 
    public static String getImagePath(boolean isRightSwitch)
    {
       Name lib = isRightSwitch ? getNextLibrary() : getPreviousLibrary();
-      return files.get(lib)[9];
+      return files.get(lib)[1];
    }
 
    public static LoopMode getLoopMode(int fileNum)
