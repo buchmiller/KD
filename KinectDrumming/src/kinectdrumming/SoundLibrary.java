@@ -134,20 +134,29 @@ public class SoundLibrary
       activeLibrary = name;
    }
 
-   public static void nextLibrary()
+   private static Name getNextLibrary()
    {
-      activeLibrary = activeLibrary.ordinal() < Name.values().length - 1
+      return activeLibrary.ordinal() < Name.values().length - 1
             ? Name.values()[activeLibrary.ordinal() + 1]
             : Name.values()[0];
+   }
 
+   private static Name getPreviousLibrary()
+   {
+      return activeLibrary.ordinal() > 0
+            ? Name.values()[activeLibrary.ordinal() - 1]
+            : Name.values()[Name.values().length - 1];
+   }
+
+   public static void nextLibrary()
+   {
+      activeLibrary = getNextLibrary();
       System.out.println("New library - " + activeLibrary.toString());
    }
 
    public static void previousLibrary()
    {
-      activeLibrary = activeLibrary.ordinal() > 0
-            ? Name.values()[activeLibrary.ordinal() - 1]
-            : Name.values()[Name.values().length - 1];
+      activeLibrary = getPreviousLibrary();
       System.out.println("New library - " + activeLibrary.toString());
    }
 
@@ -171,7 +180,12 @@ public class SoundLibrary
       return files.get(activeLibrary)[fileNum + 9];
    }
 
-   //TODO add getPicturePath?
+   public static String getImagePath(boolean isRightSwitch)
+   {
+      Name lib = isRightSwitch ? getNextLibrary() : getPreviousLibrary();
+      return files.get(lib)[9];
+   }
+
    public static LoopMode getLoopMode(int fileNum)
    {
       LoopMode mode = LoopMode.NONE;
