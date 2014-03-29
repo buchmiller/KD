@@ -24,19 +24,20 @@ public class SoundLibrary
       tempMap.put(Name.MARIO, new String[]
       {
          "1000T000",
-         "sounds/mario/smb3_level_clear.wav",
+         "images/mario/mario.png",
+         "sounds/mario/star_power.wav",
          "sounds/mario/smb3_1_up.wav",
          "sounds/mario/smb3_jump.wav",
          "sounds/mario/smb3_coin.wav",
-         "sounds/mario/star_power.wav",
+         "sounds/mario/mario_theme.wav", //change to mario theme
          "sounds/mario/smb3_power_up.wav",
          "sounds/mario/smb3_pipe.wav",
          "sounds/mario/smb3_fireball.wav",
-         "images/mario/mario.png",
+         "images/mario/star.png",
          "images/mario/life.png",
          "images/mario/jump.png",
          "images/mario/coin.png",
-         "images/mario/star.png",
+         "images/mario/mario.png",
          "images/mario/powerup.png",
          "images/mario/pipe.png",
          "images/mario/fireball.png"
@@ -44,12 +45,13 @@ public class SoundLibrary
       });
       tempMap.put(Name.DRUMS1, new String[]
       {
-         "T0000000",
-         "sounds/drumset1/easy_guitar.wav", //replace with loop
+         "0000T000",
+         "images/mario/coin.png",
+         "sounds/drumset1/drum_sticks.wav",
          "sounds/drumset1/hat.wav",
          "sounds/drumset1/hat-open-3.wav",
          "sounds/drumset1/kick-001.wav",
-         "sounds/drumset1/drum_sticks.wav",
+         "sounds/drumset1/easy_guitar.wav",
          "sounds/drumset1/snare-rimshot.wav",
          "sounds/drumset1/snare-rim.wav",
          "sounds/drumset1/snare.wav",
@@ -64,15 +66,16 @@ public class SoundLibrary
       });
       tempMap.put(Name.DRUMS2, new String[]
       {
-         "00000000",
-         "sounds/drumset2/snare-001.wav",
-         "sounds/drumset2/snare-006.wav",
-         "sounds/drumset2/tom.wav",
-         "sounds/drumset2/kick-006.wav",
-         "sounds/drumset2/perc-1.wav",
+         "0000T000",
+         "images/mario/fireball.png",
          "sounds/drumset2/ride-bell.wav",
          "sounds/drumset2/ride.wav",
+         "sounds/drumset2/snare-001.wav",
+         "sounds/drumset2/kick-006.wav",
+         "sounds/drumset2/indie-fall.wav",
          "sounds/drumset2/sidestick.wav",
+         "sounds/drumset2/snare-006.wav",
+         "sounds/drumset2/tom.wav",
          "images/mario/fireball.png",
          "images/mario/fireball.png",
          "images/mario/fireball.png",
@@ -85,12 +88,13 @@ public class SoundLibrary
       tempMap.put(Name.TRIBAL, new String[]
       {
          "0000T000",
-         "sounds/tribal/tribalfloor.wav",
+         "images/tribal/bongo4.png",
+         "sounds/tribal/bongo-split.wav",
          "sounds/tribal/bongos.wav",
          "sounds/tribal/bongo_1.wav",
          "sounds/tribal/bongo_2.wav",
          "sounds/tribal/tribal-beat-1.wav",
-         "sounds/tribal/bongo-split.wav",
+         "sounds/tribal/tribalfloor.wav",
          "sounds/tribal/bongo_3.wav",
          "sounds/tribal/bongo_4.wav",
          "images/tribal/conga.png",
@@ -98,13 +102,14 @@ public class SoundLibrary
          "images/tribal/bongo1.png",
          "images/tribal/bongo2.png",
          "images/tribal/bongo1.png",
-         "images/tribal/bongo1.png",
+         "images/tribal/steel.png",
          "images/tribal/bongo3.png",
          "images/tribal/bongo4.png"
       });
       tempMap.put(Name.BIT8, new String[]
       {
          "11111111",
+         "images/8bit/A.png",
          "sounds/8bit/tone_1.wav",
          "sounds/8bit/tone_2.wav",
          "sounds/8bit/tone_3.wav",
@@ -134,12 +139,29 @@ public class SoundLibrary
       activeLibrary = name;
    }
 
-   public static void nextLibrary()
+   private static Name getNextLibrary()
    {
-      activeLibrary = activeLibrary.ordinal() < Name.values().length - 1
+      return activeLibrary.ordinal() < Name.values().length - 1
             ? Name.values()[activeLibrary.ordinal() + 1]
             : Name.values()[0];
+   }
 
+   private static Name getPreviousLibrary()
+   {
+      return activeLibrary.ordinal() > 0
+            ? Name.values()[activeLibrary.ordinal() - 1]
+            : Name.values()[Name.values().length - 1];
+   }
+
+   public static void nextLibrary()
+   {
+      activeLibrary = getNextLibrary();
+      System.out.println("New library - " + activeLibrary.toString());
+   }
+
+   public static void previousLibrary()
+   {
+      activeLibrary = getPreviousLibrary();
       System.out.println("New library - " + activeLibrary.toString());
    }
 
@@ -150,7 +172,7 @@ public class SoundLibrary
          return "";
       }
 
-      return files.get(activeLibrary)[fileNum + 1];
+      return files.get(activeLibrary)[fileNum + 2];
    }
 
    public static String getImagePath(int fileNum)
@@ -160,10 +182,15 @@ public class SoundLibrary
          return "";
       }
 
-      return files.get(activeLibrary)[fileNum + 9];
+      return files.get(activeLibrary)[fileNum + 10];
    }
 
-   //TODO add getPicturePath?
+   public static String getImagePath(boolean isRightSwitch)
+   {
+      Name lib = isRightSwitch ? getNextLibrary() : getPreviousLibrary();
+      return files.get(lib)[1];
+   }
+
    public static LoopMode getLoopMode(int fileNum)
    {
       LoopMode mode = LoopMode.NONE;
