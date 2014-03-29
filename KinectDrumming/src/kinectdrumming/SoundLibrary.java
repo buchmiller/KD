@@ -25,19 +25,19 @@ public class SoundLibrary
       {
          "1000T000",
          "images/mario/mario.png",
-         "sounds/mario/smb3_level_clear.wav",
+         "sounds/mario/star_power.wav",
          "sounds/mario/smb3_1_up.wav",
          "sounds/mario/smb3_jump.wav",
          "sounds/mario/smb3_coin.wav",
-         "sounds/mario/star_power.wav",
+         "sounds/mario/mario_theme.wav", //change to mario theme
          "sounds/mario/smb3_power_up.wav",
          "sounds/mario/smb3_pipe.wav",
          "sounds/mario/smb3_fireball.wav",
-         "images/mario/mario.png",
+         "images/mario/star.png",
          "images/mario/life.png",
          "images/mario/jump.png",
          "images/mario/coin.png",
-         "images/mario/star.png",
+         "images/mario/mario.png",
          "images/mario/powerup.png",
          "images/mario/pipe.png",
          "images/mario/fireball.png"
@@ -45,13 +45,13 @@ public class SoundLibrary
       });
       tempMap.put(Name.DRUMS1, new String[]
       {
-         "T0000000",
+         "0000T000",
          "images/mario/coin.png",
-         "sounds/drumset1/easy_guitar.wav", //replace with loop
+         "sounds/drumset1/drum_sticks.wav",
          "sounds/drumset1/hat.wav",
          "sounds/drumset1/hat-open-3.wav",
          "sounds/drumset1/kick-001.wav",
-         "sounds/drumset1/drum_sticks.wav",
+         "sounds/drumset1/easy_guitar.wav",
          "sounds/drumset1/snare-rimshot.wav",
          "sounds/drumset1/snare-rim.wav",
          "sounds/drumset1/snare.wav",
