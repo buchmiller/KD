@@ -66,16 +66,16 @@ public class SoundLibrary
       });
       tempMap.put(Name.DRUMS2, new String[]
       {
-         "00000000",
+         "0000T000",
          "images/mario/fireball.png",
-         "sounds/drumset2/snare-001.wav",
-         "sounds/drumset2/snare-006.wav",
-         "sounds/drumset2/tom.wav",
-         "sounds/drumset2/kick-006.wav",
-         "sounds/drumset2/perc-1.wav",
          "sounds/drumset2/ride-bell.wav",
          "sounds/drumset2/ride.wav",
+         "sounds/drumset2/snare-001.wav",
+         "sounds/drumset2/kick-006.wav",
+         "sounds/drumset2/indie-fall.wav",
          "sounds/drumset2/sidestick.wav",
+         "sounds/drumset2/snare-006.wav",
+         "sounds/drumset2/tom.wav",
          "images/mario/fireball.png",
          "images/mario/fireball.png",
          "images/mario/fireball.png",
