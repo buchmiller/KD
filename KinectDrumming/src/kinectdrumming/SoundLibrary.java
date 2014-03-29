@@ -98,7 +98,7 @@ public class SoundLibrary
          "images/tribal/bongo1.png",
          "images/tribal/bongo2.png",
          "images/tribal/bongo1.png",
-         "images/tribal/bongo1.png",
+         "images/tribal/steel.png",
          "images/tribal/bongo3.png",
          "images/tribal/bongo4.png"
       });

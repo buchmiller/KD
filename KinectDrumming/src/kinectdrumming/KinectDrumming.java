@@ -36,7 +36,7 @@ public class KinectDrumming extends PApplet
    @Override
    public boolean sketchFullScreen()
    {
-      return true;
+      return false;
    }
 
    @Override
