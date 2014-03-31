@@ -29,7 +29,7 @@ public class SoundLibrary
          "sounds/mario/smb3_1_up.wav",
          "sounds/mario/smb3_jump.wav",
          "sounds/mario/smb3_coin.wav",
-         "sounds/mario/mario_theme.wav", //change to mario theme
+         "sounds/mario/mario_theme.wav",
          "sounds/mario/smb3_power_up.wav",
          "sounds/mario/smb3_pipe.wav",
          "sounds/mario/smb3_fireball.wav",
@@ -59,7 +59,7 @@ public class SoundLibrary
          "images/mario/coin.png",
          "images/mario/coin.png",
          "images/mario/coin.png",
-         "images/mario/coin.png",
+         "images/drums/guitar2.png",
          "images/mario/coin.png",
          "images/mario/coin.png",
          "images/mario/coin.png"
@@ -67,7 +67,7 @@ public class SoundLibrary
       tempMap.put(Name.DRUMS2, new String[]
       {
          "0000T000",
-         "images/mario/fireball.png",
+         "images/drums/guitar.png",
          "sounds/drumset2/ride-bell.wav",
          "sounds/drumset2/ride.wav",
          "sounds/drumset2/snare-001.wav",
@@ -80,7 +80,7 @@ public class SoundLibrary
          "images/mario/fireball.png",
          "images/mario/fireball.png",
          "images/mario/fireball.png",
-         "images/mario/fireball.png",
+         "images/drums/guitar.png",
          "images/mario/fireball.png",
          "images/mario/fireball.png",
          "images/mario/fireball.png"
@@ -94,7 +94,7 @@ public class SoundLibrary
          "sounds/tribal/bongo_1.wav",
          "sounds/tribal/bongo_2.wav",
          "sounds/tribal/tribal-beat-1.wav",
-         "sounds/tribal/tribalfloor.wav",
+         "sounds/tribal/steel-drum.wav",
          "sounds/tribal/bongo_3.wav",
          "sounds/tribal/bongo_4.wav",
          "images/tribal/conga.png",
