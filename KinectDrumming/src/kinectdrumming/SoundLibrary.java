@@ -46,7 +46,7 @@ public class SoundLibrary
       tempMap.put(Name.DRUMS1, new String[]
       {
          "0000T000",
-         "images/mario/coin.png",
+         "images/drums/snare-rim.png",
          "sounds/drumset1/drum_sticks.wav",
          "sounds/drumset1/hat.wav",
          "sounds/drumset1/hat-open-3.wav",
@@ -55,14 +55,14 @@ public class SoundLibrary
          "sounds/drumset1/snare-rimshot.wav",
          "sounds/drumset1/snare-rim.wav",
          "sounds/drumset1/snare.wav",
-         "images/mario/coin.png",
-         "images/mario/coin.png",
-         "images/mario/coin.png",
-         "images/mario/coin.png",
+         "images/drums/sticks.png",
+         "images/drums/closehat.png",
+         "images/drums/openhat.png",
+         "images/drums/bass.png",
          "images/drums/guitar2.png",
-         "images/mario/coin.png",
-         "images/mario/coin.png",
-         "images/mario/coin.png"
+         "images/drums/snare2.png",
+         "images/drums/snare-rim.png",
+         "images/drums/snare1.png"
       });
       tempMap.put(Name.DRUMS2, new String[]
       {
@@ -76,14 +76,14 @@ public class SoundLibrary
          "sounds/drumset2/sidestick.wav",
          "sounds/drumset2/snare-006.wav",
          "sounds/drumset2/tom.wav",
-         "images/mario/fireball.png",
-         "images/mario/fireball.png",
-         "images/mario/fireball.png",
-         "images/mario/fireball.png",
+         "images/drums/bell.png",
+         "images/drums/hat1.png",
+         "images/drums/snare1.png",
+         "images/drums/bass.png",
          "images/drums/guitar.png",
-         "images/mario/fireball.png",
-         "images/mario/fireball.png",
-         "images/mario/fireball.png"
+         "images/drums/snare-rim.png",
+         "images/drums/snare2.png",
+         "images/drums/tom.png"
       });
       tempMap.put(Name.TRIBAL, new String[]
       {
@@ -101,7 +101,7 @@ public class SoundLibrary
          "images/tribal/bongos.png",
          "images/tribal/bongo1.png",
          "images/tribal/bongo2.png",
-         "images/tribal/bongo1.png",
+         "images/tribal/african-drums.png",
          "images/tribal/steel.png",
          "images/tribal/bongo3.png",
          "images/tribal/bongo4.png"
