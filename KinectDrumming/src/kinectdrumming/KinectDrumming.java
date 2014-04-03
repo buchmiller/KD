@@ -28,10 +28,10 @@ public class KinectDrumming extends PApplet
    private int buttonBorderColor = color(74, 121, 165);
    private int handColor = color(74, 121, 165);
    private int handBorderColor = color(255, 255, 255);
-//   private float timer = 0;
-//   private float delay = 1000 / 2f; //2 fps
-//   private List<Integer> timeData = new ArrayList<>();
-//   private int myTime = 0;
+   private float timer = 0;
+   private float delay = 1000 / 2f; //2 fps
+   private List<Integer> timeData = new ArrayList<>();
+   private int myTime = 0;
 
    @Override
    public boolean sketchFullScreen()
@@ -125,11 +125,13 @@ public class KinectDrumming extends PApplet
    @Override
    public void draw()
    {
-//      long startTime = 1;
-//      long endTime = 1;
+      long startTime = 1;
+      long endTime = 1;
 
       // update the cam
       context.update(); //2-3 ms, 5-6 ms with userImage
+      
+      startTime = System.nanoTime();
 
       background(backColor);
       strokeWeight(10);
@@ -172,29 +174,28 @@ public class KinectDrumming extends PApplet
          determineLibrary();
       }
 
-//      startTime = System.nanoTime();
-//      endTime = System.nanoTime();
+      endTime = System.nanoTime();
 
       //output current framerate
-//      fill(255, 0, 0);
-//      textSize(32);
-//      text("fps: " + (int) frameRate, 10, 30);
-//
-//      timeData.add((int) (endTime - startTime) / 1000);
-//      if (millis() > timer)
-//      {
-//         int sum = 0;
-//         for (int i : timeData)
-//         {
-//            sum += i;
-//         }
-//         myTime = sum / timeData.size();
-//         timeData.clear();
-//         timer += delay;
-//      }
-//      fill(255, 0, 0);
-//      textSize(32);
-//      text(myTime + " microseconds", 200, 40);
+      fill(255, 0, 0);
+      textSize(32);
+      text((int) frameRate + " fps", 10, 30);
+
+      timeData.add((int) (endTime - startTime) / 1000);
+      if (millis() > timer)
+      {
+         int sum = 0;
+         for (int i : timeData)
+         {
+            sum += i;
+         }
+         myTime = sum / timeData.size();
+         timeData.clear();
+         timer += delay;
+      }
+      fill(255, 0, 0);
+      textSize(32);
+      text(myTime + " micro sec.", 700, 40);
    }
 
    private void determineLibrary()
