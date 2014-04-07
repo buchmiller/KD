@@ -29,9 +29,10 @@ public class KinectDrumming extends PApplet
    private int handColor = color(74, 121, 165);
    private int handBorderColor = color(255, 255, 255);
    private float timer = 0;
-   private float delay = 1000 / 2f; //2 fps
+   private float delay = 1000 / 1f; //1 fps
    private List<Integer> timeData = new ArrayList<>();
    private int myTime = 0;
+   private int myFramerate = 0;
 
    @Override
    public boolean sketchFullScreen()
@@ -125,13 +126,13 @@ public class KinectDrumming extends PApplet
    @Override
    public void draw()
    {
-      long startTime = 1;
-      long endTime = 1;
+      long startTime;
+      long endTime;
 
       // update the cam
       context.update(); //2-3 ms, 5-6 ms with userImage
-      
-      startTime = System.nanoTime();
+
+      startTime = System.nanoTime(); //start timer
 
       background(backColor);
       strokeWeight(10);
@@ -174,13 +175,9 @@ public class KinectDrumming extends PApplet
          determineLibrary();
       }
 
-      endTime = System.nanoTime();
+      endTime = System.nanoTime(); //end timer
 
-      //output current framerate
-      fill(255, 0, 0);
-      textSize(32);
-      text((int) frameRate + " fps", 10, 30);
-
+      //Output useful information about performance
       timeData.add((int) (endTime - startTime) / 1000);
       if (millis() > timer)
       {
@@ -189,13 +186,15 @@ public class KinectDrumming extends PApplet
          {
             sum += i;
          }
+         myFramerate = (int) frameRate;
          myTime = sum / timeData.size();
          timeData.clear();
          timer += delay;
       }
-      fill(255, 0, 0);
-      textSize(32);
-      text(myTime + " micro sec.", 700, 40);
+      fill(255, 255, 255);
+      textSize(16);
+      text("Delay: " + (myTime / 1000) + " ms", 10, 25); //display response time
+      text((int) myFramerate + " fps", 10, 50); //display framerate
    }
 
    private void determineLibrary()
