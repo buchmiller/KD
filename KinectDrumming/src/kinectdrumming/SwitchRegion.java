@@ -43,7 +43,6 @@ public class SwitchRegion extends Region
                SoundLibrary.previousLibrary();
             }
             hasChanged = true;
-            //TODO set picture path
 
             //else do nothing - still in region
          }
